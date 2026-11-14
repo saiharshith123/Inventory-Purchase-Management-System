@@ -290,4 +290,4 @@ Create a `screenshots` folder in the project root and add the corresponding imag
 
 ## 📄 License
 
-This project is developed for learning and portfolio purposes. You may add an MIT License if you intend to distribute it under those terms.
+This project is developed for learning and portfolio purposes.
