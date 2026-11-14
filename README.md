@@ -1,15 +1,12 @@
 # Inventory and Purchase Management System
-
 A full-stack web application built to manage inventory, suppliers, product stock, and purchase transactions. The system provides a centralized dashboard to monitor stock levels, track inventory movements, and manage products efficiently.
 
 ## 🚀 Project Overview
-
 The Inventory and Purchase Management System helps businesses maintain accurate inventory records and monitor stock availability. Users can manage suppliers and products, record stock receipts and issues, and view transaction history through a simple React-based dashboard.
 
 The backend is developed using FastAPI, with PostgreSQL used for persistent data storage.
 
 ## ✨ Features
-
 ### Dashboard
 - View total products and suppliers.
 - Monitor available stock.
@@ -256,23 +253,14 @@ pytest -q
 
 ## 📸 Application Screenshots
 
-Add your actual application screenshots here after capturing them.
-
-```markdown
-![Dashboard](<img width="930" height="954" alt="image" src="https://github.com/user-attachments/assets/4013b031-4321-47d7-90f4-806c06b2adbb" />
-)
-
-![Product Management](<img width="1154" height="331" alt="image" src="https://github.com/user-attachments/assets/47484abf-1ab7-484f-ab7d-54bb339430f0" />
-)
-
-![Supplier Management](<img width="569" height="277" alt="image" src="https://github.com/user-attachments/assets/f6501f4e-3869-4d4d-88a9-052afb293e81" />
-)
-
-![Stock Transactions](<img width="1148" height="259" alt="image" src="https://github.com/user-attachments/assets/a9fe1600-abe1-4b5d-ac0c-6ead4c9372d9" />
-)
-```
-
-Create a `screenshots` folder in the project root and add the corresponding images.
+## Dashboard
+<img width="930" height="954" alt="image" src="https://github.com/user-attachments/assets/4013b031-4321-47d7-90f4-806c06b2adbb" />
+## Product Management
+<img width="1154" height="331" alt="image" src="https://github.com/user-attachments/assets/47484abf-1ab7-484f-ab7d-54bb339430f0" />
+## Supplier Management
+<img width="569" height="277" alt="image" src="https://github.com/user-attachments/assets/f6501f4e-3869-4d4d-88a9-052afb293e81" />
+## Stock Transactions
+<img width="1148" height="259" alt="image" src="https://github.com/user-attachments/assets/a9fe1600-abe1-4b5d-ac0c-6ead4c9372d9" />
 
 ## 🔮 Future Enhancements
 
@@ -287,7 +275,7 @@ Create a `screenshots` folder in the project root and add the corresponding imag
 
 ## 👨‍💻 Author
 
-**Your Name**
+**B.Sai Harshith**
 
 - GitHub: https://github.com/saiharshith123
 - LinkedIn: https://www.linkedin.com/in/bachina-sai-harshith/
