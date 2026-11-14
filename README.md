@@ -285,8 +285,8 @@ Create a `screenshots` folder in the project root and add the corresponding imag
 
 **Your Name**
 
-- GitHub: https://github.com/YOUR_USERNAME
-- LinkedIn: https://www.linkedin.com/in/YOUR_LINKEDIN_PROFILE/
+- GitHub: https://github.com/saiharshith123
+- LinkedIn: https://www.linkedin.com/in/bachina-sai-harshith/
 
 ## 📄 License
 
