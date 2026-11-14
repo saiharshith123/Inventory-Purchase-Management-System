@@ -1,80 +1,293 @@
-# Inventory & Purchase Management System
+# Inventory and Purchase Management System
 
-Stack: React + Vite, FastAPI, PostgreSQL.
+A full-stack web application built to manage inventory, suppliers, product stock, and purchase transactions. The system provides a centralized dashboard to monitor stock levels, track inventory movements, and manage products efficiently.
 
-## Features
-- Normalized supplier, product and stock transaction tables.
-- Supplier/product create and product update/delete endpoints.
-- Stock receipts and issues; rejects issues that exceed available stock.
-- Atomic stock update and ledger insert using a PostgreSQL transaction and `SELECT FOR UPDATE`.
-- Search, supplier filter and low-stock filter APIs.
-- Dashboard summary, low-stock alerts and recent transaction history.
-- Pydantic validation and starter tests.
+## 🚀 Project Overview
 
-## Requirements
-Install Python 3.10+, Node.js 18+, and PostgreSQL 14+.
+The Inventory and Purchase Management System helps businesses maintain accurate inventory records and monitor stock availability. Users can manage suppliers and products, record stock receipts and issues, and view transaction history through a simple React-based dashboard.
 
-## 1. Database setup
-In pgAdmin Query Tool or psql, create the database:
-```sql
-CREATE DATABASE inventory_db;
+The backend is developed using FastAPI, with PostgreSQL used for persistent data storage.
+
+## ✨ Features
+
+### Dashboard
+- View total products and suppliers.
+- Monitor available stock.
+- View low-stock alerts.
+- Track inventory statistics.
+
+### Supplier Management
+- Add new suppliers.
+- View supplier details.
+- Manage supplier information.
+
+### Product Management
+- Add new products.
+- View product details and stock quantities.
+- Associate products with suppliers.
+- Search and filter products.
+- Identify products with low stock.
+
+### Stock Management
+- Record stock receipts when new inventory arrives.
+- Record stock issues when inventory is used or sold.
+- Automatically update product stock quantities.
+- Prevent stock quantities from becoming negative.
+
+### Transaction History
+- Maintain records of stock movements.
+- Track stock receipt and issue transactions.
+- View previous inventory transactions.
+
+### Database Management
+- Store supplier, product, and transaction information in PostgreSQL.
+- Use database transactions for stock updates.
+- Apply row-level locking to help prevent conflicting stock operations.
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | React.js, JavaScript, CSS |
+| Backend | Python, FastAPI |
+| Database | PostgreSQL |
+| API Documentation | Swagger UI, OpenAPI |
+| Database Connectivity | Psycopg2 |
+| Testing | Pytest |
+| Development Tools | VS Code, Postman, pgAdmin |
+
+## 📁 Project Structure
+
+```text
+inventory-purchase-management/
+│
+├── backend/
+│   ├── .env.example
+│   ├── database.py
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── schema.sql
+│   ├── seed.sql
+│   ├── pytest.ini
+│   │
+│   └── tests/
+│       └── test_validation.py
+│
+├── frontend/
+│   ├── package.json
+│   ├── index.html
+│   │
+│   └── src/
+│       ├── App.jsx
+│       ├── main.jsx
+│       └── style.css
+│
+└── README.md
 ```
-Select/connect to `inventory_db`, then execute `backend/schema.sql`, followed by `backend/seed.sql`.
-Alternatively, from the project root with psql installed:
+
+## ⚙️ Installation and Setup
+
+### 1. Clone the Repository
+
 ```bash
-psql -U postgres -d inventory_db -f backend/schema.sql
-psql -U postgres -d inventory_db -f backend/seed.sql
+git clone https://github.com/YOUR_USERNAME/inventory-purchase-management.git
 ```
 
-## 2. Backend setup (Windows PowerShell)
+Navigate to the project directory:
+
+```bash
+cd inventory-purchase-management
+```
+
+### 2. Backend Setup
+
+Navigate to the backend folder:
+
+```bash
+cd backend
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate the virtual environment on Windows PowerShell:
+
 ```powershell
-cd inventory-purchase-management\backend
-py -m venv .venv
 .\.venv\Scripts\Activate.ps1
+```
+
+Install the required dependencies:
+
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
-Copy-Item .env.example .env
 ```
-Edit `.env` and enter your PostgreSQL password:
+
+### 3. PostgreSQL Database Setup
+
+Make sure PostgreSQL is installed and running.
+
+Create a new database:
+
+```sql
+CREATE DATABASE inventory_purchase_db;
+```
+
+Connect to the database:
+
+```sql
+\c inventory_purchase_db
+```
+
+Execute the SQL scripts in the following order using pgAdmin Query Tool or PostgreSQL:
+
+1. `backend/schema.sql`
+2. `backend/seed.sql`
+
+The schema script creates the required tables, and the seed script inserts sample records.
+
+### 4. Configure Environment Variables
+
+Create a `.env` file inside the `backend` folder.
+
 ```env
-DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/inventory_db
+DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/inventory_purchase_db
 ```
-Start the API:
-```powershell
+
+Replace `YOUR_PASSWORD` with your PostgreSQL password.
+
+**Important:** Never upload your actual `.env` file or database credentials to GitHub.
+
+### 5. Start the Backend Server
+
+From the backend directory, run:
+
+```bash
 uvicorn main:app --reload
 ```
-API: http://localhost:8000  
-Interactive API docs: http://localhost:8000/docs
 
-## 3. Frontend setup (open a second terminal)
-```powershell
-cd inventory-purchase-management\frontend
+Backend URL:
+
+```text
+http://localhost:8000
+```
+
+Swagger API Documentation:
+
+```text
+http://localhost:8000/docs
+```
+
+### 6. Frontend Setup
+
+Open a second terminal and navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start the React development server:
+
+```bash
 npm run dev
 ```
-Open http://localhost:5173.
 
-## 4. Tests
-In the backend terminal with its virtual environment active:
-```powershell
-pytest -q
+Frontend URL:
+
+```text
+http://localhost:5173
 ```
-The included tests cover invalid stock quantities and negative prices. Test transactional stock flows against your local PostgreSQL database through Swagger or the UI.
 
-## API endpoints
+## 🔗 API Endpoints
+
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/dashboard` | Summary and low-stock products |
-| GET | `/api/products?search=mouse` | Search products |
-| GET | `/api/products?low_stock=true` | Low-stock filter |
-| GET/POST | `/api/suppliers` | List/create suppliers |
-| GET/POST | `/api/products` | List/create products |
-| PUT/DELETE | `/api/products/{id}` | Update/delete product |
-| POST | `/api/stock-transactions` | Record receipt or issue |
-| GET | `/api/stock-transactions` | Transaction history |
+| GET | `/` | Check API status |
+| GET | `/api/dashboard` | Retrieve dashboard statistics |
+| GET | `/api/suppliers` | Get all suppliers |
+| POST | `/api/suppliers` | Add a supplier |
+| GET | `/api/products` | Get all products |
+| POST | `/api/products` | Add a product |
+| GET | `/api/stock-transactions` | Get transaction history |
+| POST | `/api/stock-transactions` | Record stock receipt or issue |
 
-Example transaction body:
-```json
-{"product_id":1,"quantity":5,"transaction_type":"RECEIPT","reference":"PO-1001"}
+For complete request and response details, visit:
+
+`http://localhost:8000/docs`
+
+## 🗄️ Database Tables
+
+The application uses the following main PostgreSQL tables:
+
+### 1. Suppliers
+Stores supplier information.
+
+### 2. Products
+Stores product details, supplier relationships, stock quantities, and stock thresholds.
+
+### 3. Stock Transactions
+Stores inventory movement records, including stock receipts and stock issues.
+
+## 🧪 Testing
+
+Run the backend tests from the backend directory:
+
+```bash
+pytest -q
 ```
 
-Note: Product deletion is blocked by PostgreSQL if historical transactions refer to it, preserving the audit trail. This starter project does not yet include authentication, pagination, migrations or automated integration tests.
+## 🔒 Important Implementation Details
+
+- Uses FastAPI for REST API development.
+- Uses PostgreSQL for reliable data persistence.
+- Uses database transactions for inventory updates.
+- Uses `SELECT ... FOR UPDATE` to lock product records during stock operations.
+- Validates stock operations to prevent negative inventory.
+- Separates frontend, backend, and database responsibilities.
+
+## 📸 Application Screenshots
+
+Add your actual application screenshots here after capturing them.
+
+```markdown
+![Dashboard](screenshots/dashboard.png)
+
+![Product Management](screenshots/products.png)
+
+![Supplier Management](screenshots/suppliers.png)
+
+![Stock Transactions](screenshots/transactions.png)
+```
+
+Create a `screenshots` folder in the project root and add the corresponding images.
+
+## 🔮 Future Enhancements
+
+- User authentication and role-based access control.
+- Edit and delete functionality for products and suppliers.
+- Purchase order creation and management.
+- Invoice generation and PDF export.
+- Advanced sales and inventory reports.
+- Automated low-stock notifications.
+- Docker-based deployment.
+- Cloud deployment and production configuration.
+
+## 👨‍💻 Author
+
+**Your Name**
+
+- GitHub: https://github.com/YOUR_USERNAME
+- LinkedIn: https://www.linkedin.com/in/YOUR_LINKEDIN_PROFILE/
+
+## 📄 License
+
+This project is developed for learning and portfolio purposes. You may add an MIT License if you intend to distribute it under those terms.
