@@ -259,13 +259,17 @@ pytest -q
 Add your actual application screenshots here after capturing them.
 
 ```markdown
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](<img width="930" height="954" alt="image" src="https://github.com/user-attachments/assets/4013b031-4321-47d7-90f4-806c06b2adbb" />
+)
 
-![Product Management](screenshots/products.png)
+![Product Management](<img width="1154" height="331" alt="image" src="https://github.com/user-attachments/assets/47484abf-1ab7-484f-ab7d-54bb339430f0" />
+)
 
-![Supplier Management](screenshots/suppliers.png)
+![Supplier Management](<img width="569" height="277" alt="image" src="https://github.com/user-attachments/assets/f6501f4e-3869-4d4d-88a9-052afb293e81" />
+)
 
-![Stock Transactions](screenshots/transactions.png)
+![Stock Transactions](<img width="1148" height="259" alt="image" src="https://github.com/user-attachments/assets/a9fe1600-abe1-4b5d-ac0c-6ead4c9372d9" />
+)
 ```
 
 Create a `screenshots` folder in the project root and add the corresponding images.
